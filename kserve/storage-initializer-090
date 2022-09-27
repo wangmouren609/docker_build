@@ -1,0 +1,1 @@
+FROM kserve/storage-initializer:v0.9.0
