@@ -78,7 +78,13 @@ COPY --chown=model-server --from=compile-image /home/venv /home/venv
 
 ENV PATH="/home/venv/bin:$PATH"
 
+# this is torchserve-kfs build
+RUN pip install --upgrade pip
+COPY requirements.txt /home/model-server/requirements.txt
+RUN pip install -r /home/model-server/requirements.txt
+
 COPY dockerd-entrypoint.sh /usr/local/bin/dockerd-entrypoint.sh
+COPY kserve_wrapper /home/model-server/kserve_wrapper
 
 RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh \
     && chown -R model-server /home/model-server
@@ -86,11 +92,7 @@ RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh \
 COPY config.properties /home/model-server/config.properties
 RUN mkdir /home/model-server/model-store && chown -R model-server /home/model-server/model-store
 
-## this is torchserve-kfs build
-RUN pip install --upgrade pip
-COPY requirements.txt /home/model-server/requirements.txt
-RUN pip install -r /home/model-server/requirements.txt
-COPY kserve_wrapper /home/model-server/kserve_wrapper
+
 
 EXPOSE 8080 8081 8082 7070 7071
 
