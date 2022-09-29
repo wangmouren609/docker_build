@@ -4,9 +4,7 @@ FROM ${BASE_IMAGE} AS compile-image
 ARG BASE_IMAGE=nvidia/cuda:11.3.0-cudnn8-runtime-ubuntu18.04
 ENV PYTHONUNBUFFERED TRUE
 
-RUN --mount=type=cache,id=apt-dev,target=/var/cache/apt \
-    #apt --fix-broken -y install && \
-    apt-get update && \
+RUN apt-get update && \
     apt remove python-pip  python3-pip && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     ca-certificates \
@@ -60,8 +58,7 @@ FROM ${BASE_IMAGE} AS runtime-image
 
 ENV PYTHONUNBUFFERED TRUE
 
-RUN --mount=type=cache,target=/var/cache/apt \
-    apt-get update && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install --no-install-recommends -y \
     python3.8 \
     python3.8-distutils \
