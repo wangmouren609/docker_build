@@ -74,8 +74,6 @@ RUN useradd -m model-server \
     && mkdir -p /home/model-server/tmp
 
 
-ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh"]
-
 COPY --chown=model-server --from=compile-image /home/venv /home/venv
 
 ENV PATH="/home/venv/bin:$PATH"
