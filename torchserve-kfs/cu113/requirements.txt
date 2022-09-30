@@ -1,3 +1,0 @@
-kserve>=0.7.0
-transformers
-captum
