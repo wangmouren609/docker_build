@@ -99,5 +99,5 @@ EXPOSE 8080 8081 8082 7070 7071
 USER model-server
 WORKDIR /home/model-server
 ENV TEMP=/home/model-server/tmp
-ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh"]
+ENTRYPOINT ["sh","/usr/local/bin/dockerd-entrypoint.sh"]
 CMD ["serve"]
