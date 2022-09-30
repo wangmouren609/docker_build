@@ -38,19 +38,10 @@ ARG CUDA_VERSION="cu113"
 
 RUN TORCH_VER=1.11.0 && \
     TORCH_VISION_VER=0.12.0 && \
-    if echo "$BASE_IMAGE" | grep -q "cuda:"; then \
-        # Install CUDA version specific binary when CUDA version is specified as a build arg
-        if [ "$CUDA_VERSION" ]; then \
-            python -m pip install --no-cache-dir torch==$TORCH_VER+$CUDA_VERSION torchvision==$TORCH_VISION_VER+$CUDA_VERSION -f https://download.pytorch.org/whl/torch_stable.html; \
-        # Install the binary with the latest CUDA version support
-        else \
-            python -m pip install --no-cache-dir torch torchvision; \
-        fi; \
-        python -m pip install --no-cache-dir -r https://raw.githubusercontent.com/pytorch/serve/master/requirements/common.txt; \
-    # Install the CPU binary
-    else \
-        python -m pip install --no-cache-dir torch==$TORCH_VER+cpu torchvision==$TORCH_VISION_VER+cpu -f https://download.pytorch.org/whl/torch_stable.html; \
-    fi
+    python -m pip install --no-cache-dir torch==$TORCH_VER+$CUDA_VERSION torchvision==$TORCH_VISION_VER+$CUDA_VERSION -f https://download.pytorch.org/whl/torch_stable.html && \
+    python -m pip install --no-cache-dir -r https://raw.githubusercontent.com/pytorch/serve/master/requirements/common.txt
+
+
 RUN python -m pip install -U setuptools && python -m pip install --no-cache-dir captum torchtext torchserve torch-model-archiver
 
 # Final image for production
