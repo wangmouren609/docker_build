@@ -34,11 +34,9 @@ RUN python -m pip install -U pip setuptools
 # This is only useful for cuda env
 RUN export USE_CUDA=1
 
-ARG CUDA_VERSION="cu113"
+# ARG CUDA_VERSION="cu113"
 
-RUN TORCH_VER=1.11.0 && \
-    TORCH_VISION_VER=0.12.0 && \
-    python -m pip install --no-cache-dir torch==$TORCH_VER+$CUDA_VERSION torchvision==$TORCH_VISION_VER+$CUDA_VERSION -f https://download.pytorch.org/whl/torch_stable.html && \
+RUN python -m pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html && \
     python -m pip install --no-cache-dir -r https://raw.githubusercontent.com/pytorch/serve/master/requirements/common.txt
 
 
