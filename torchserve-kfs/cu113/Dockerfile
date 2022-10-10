@@ -40,7 +40,7 @@ RUN python -m pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0
     python -m pip install --no-cache-dir -r https://raw.githubusercontent.com/pytorch/serve/master/requirements/common.txt
 
 
-RUN python -m pip install -U setuptools && python -m pip install --no-cache-dir captum torchtext torchserve torch-model-archiver
+RUN python -m pip install -U setuptools && python -m pip install --no-cache-dir captum torchtext==0.12.0 torchserve torch-model-archiver
 
 # Final image for production
 FROM ${BASE_IMAGE} AS runtime-image
