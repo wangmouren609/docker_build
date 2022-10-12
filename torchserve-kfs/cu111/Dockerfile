@@ -1,7 +1,7 @@
-ARG BASE_IMAGE=nvidia/cuda:11.3.0-cudnn8-runtime-ubuntu18.04
+ARG BASE_IMAGE=nvidia/cuda:11.1.1-cudnn8-runtime-ubuntu18.04
 
 FROM ${BASE_IMAGE} AS compile-image
-ARG BASE_IMAGE=nvidia/cuda:11.3.0-cudnn8-runtime-ubuntu18.04
+ARG BASE_IMAGE=nvidia/cuda:11.1.1-cudnn8-runtime-ubuntu18.04
 ENV PYTHONUNBUFFERED TRUE
 
 RUN apt-get update && \
