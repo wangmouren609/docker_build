@@ -36,7 +36,7 @@ RUN export USE_CUDA=1
 
 ARG CUDA_VERSION=cu113
 
-RUN python -m pip install --no-cache-dir torch==1.10.2+cu111 torchvision==0.11.3+cu111 -f https://download.pytorch.org/whl/torch_stable.html && \
+RUN python -m pip install --no-cache-dir torch==1.11.0+cu113 torchvision==0.12.0+cu113 -f https://download.pytorch.org/whl/torch_stable.html && \
     python -m pip install --no-cache-dir -r https://raw.githubusercontent.com/pytorch/serve/master/requirements/common.txt
 
 
