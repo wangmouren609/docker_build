@@ -1,0 +1,1 @@
+FROM kfserving/models-web-app:v0.6.1
