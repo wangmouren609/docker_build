@@ -78,7 +78,7 @@ if [ -f "/data/config/auto/startup.sh" ]; then
   popd
 fi
 
-if [ -d "/data/models/openai"]; then
+if [ -d "/data/models/openai" ]; then
   ln -sT  /data/models/openai  ./openai
 fi
 
