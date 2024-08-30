@@ -1,0 +1,1 @@
+FROM docker.io/docker/dockerfile:1.7-labs
